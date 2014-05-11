@@ -21,7 +21,7 @@ def proxy_to(request, path, target_url, modifier_fn=None):
 
     params = request.dict()
     response = r(url, params=params)
-    res  = HttpResponse(response.text, status=int(response.status_code), mimetype=response.headers['content-type'])
+    res  = HttpResponse(response.text, status=int(response.status_code), content_type=response.headers['content-type'])
     if modifier_fn:
-        res = modifier_fn(res)
+        res = modifier_fn(res, request, path)
     return res
