@@ -32,9 +32,7 @@ setup(name='django-rest-framework-utils',
         'Topic :: Utilities',
     ],
     install_requires=[
-        "djangorestframework>=2.3.8", # it might still work in a lower version
-    ],
-    extras_require=[
+        "djangorestframework>=2.3.8",  # it might still work in a lower version
         "requests>=2.2.0",
         "django-taggit>=0.9.0",
     ]
