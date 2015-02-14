@@ -9,17 +9,16 @@ def proxy_to(request, path, target_url, modifier_fn=None):
     request: Django request object
     """
     url = '%s%s' % (target_url, path)
-
+    params = {}
     if request.method == 'GET':
-        request = request.GET
+        params = request.GET
         r = requests.get
     elif request.method == 'POST':
-        request = request.POST
+        params = request.POST
         r = requests.post
     else:
         return HttpResponseNotAllowed("Permitted methods are GET")
 
-    params = request.dict()
     response = r(url, params=params)
     res  = HttpResponse(response.text, status=int(response.status_code), content_type=response.headers['content-type'])
     if modifier_fn:
